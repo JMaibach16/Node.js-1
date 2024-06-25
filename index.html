@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>My first three.js app</title>
+    <style> body { margin: 0; } </style>
+</head>
+    
+<body>
+    <div><label>Es wurde das folgende Objekt geklickt: <div id="Objekt"></div></label></div>
+    <div><label>Klicken Sie auf ein Objekt für mehr Infos!</label></div><br>
+
+    <div><label>Anzahl: </label><input type="text"> <button id="Button">Erstellen</button></div><br>
+    
+    <script type="module" src="main.js">
+    function onClick () {
+        if (hitObjects.length === 0) return;
+        const clickedThing = hitObjects[0];
+        bounceObject(clickedThing);
+        console.log(clickedThing.object.name);
+        }                                  
+    }
+</script>
+</body>
+</html>
+
+<!--
+document.querySelector("#Objekt").innerHTML = clickedThing.object.name;
+clicked.material.color.set("red");
+
+// 'Piano_threejs.glb'
+loadModel(scene, 'test.glb');
+// detektiert Bewegungen der Mouse und führt dann Funktion 'onPointerMove' aus
+// Funktion zum importieren von GLTF-3D-Modellen
+function loadModel(scene, filepath) {
+const loader = new GLTFLoader();
+// lädt die Datei und führt die Funktion aus sobald fertig geladen wurde
+loader.load( filepath, function ( gltf ) {
+// Die folgende Zeile kann man mal auskommentieren und schauen, was alles so importiert wurde
+// console.log(gltf);
+// fügt die ganze Szene der aktuellen Szene hinzu
+scene.add( gltf.scene );
+}, undefined, function ( error ) {
+// gibt den Fehler aus, falls es beim Laden des Modells Probleme gab.
+console.error( error );
+} );
+}
+clickedThing.object.material 
+-->
