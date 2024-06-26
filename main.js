@@ -113,6 +113,8 @@ renderer.domElement.addEventListener("mousemove", onPointerMove);
 // detektiert Klicks der Mouse und führt dann Funktion 'onClick' aus
 renderer.domElement.addEventListener("click", onClick);
 
+loadModel(scene, 'test.glb');
+
 function animate() {
   controls.update();
   // schickt einen Strahl aus der Kamera in die Szene an den Punkt, an dem der Cursor gerade steht.
@@ -160,4 +162,20 @@ function bounceObject(clickedThing) {
       (element) => element !== clickedThing.object.name
     );
   }, 80);
+}
+
+// Funktion zum importieren von GLTF-3D-Modellen
+function loadModel(scene, filepath) {
+    const loader = new GLTFLoader();
+
+    // lädt die Datei und führt die Funktion aus sobald fertig geladen wurde
+    loader.load( filepath, function ( gltf ) {
+        // Die folgende Zeile kann man mal auskommentieren und schauen, was alles so importiert wurde
+        // console.log(gltf);
+        // fügt die ganze Szene der aktuellen Szene hinzu
+        scene.add( gltf.scene );
+    }, undefined, function ( error ) {
+        // gibt den Fehler aus, falls es beim Laden des Modells Probleme gab.
+        console.error( error );
+    } );
 }
