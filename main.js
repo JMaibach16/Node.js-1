@@ -143,6 +143,8 @@ function onClick() {
   bounceObject(clickedThing);
   // gibt Namen des Elements aus. Dieser Name ist das, was in Blender hinterlegt wurde.
   // Diese Information können wir für interessante Dinge verwenden.
+  const div = document.querySelector("#Objekt");
+  div.innerHTML = "es wurde geklickt";
   console.log(clickedThing.object.name);
 }
 let bouncingSave = [];
@@ -179,3 +181,8 @@ function loadModel(scene, filepath) {
         console.error( error );
     } );
 }
+
+const button = document.querySelector("#Button");
+button.addEventListener("click", function () {
+    console.log("Erstelle viele Cubes...")
+})
