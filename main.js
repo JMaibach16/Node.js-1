@@ -146,6 +146,7 @@ function onClick() {
   const div = document.querySelector("#Objekt");
   div.innerHTML = "es wurde geklickt";
   console.log(clickedThing.object.name);
+    clickedThing.object.material.color("red");
 }
 let bouncingSave = [];
 // bewegt Objekt nach oben und unten
@@ -182,7 +183,3 @@ function loadModel(scene, filepath) {
     } );
 }
 
-const button = document.querySelector("#Button");
-button.addEventListener("click", function () {
-    console.log("Erstelle viele Cubes...")
-})
