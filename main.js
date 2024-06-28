@@ -144,9 +144,9 @@ function onClick() {
   // gibt Namen des Elements aus. Dieser Name ist das, was in Blender hinterlegt wurde.
   // Diese Information können wir für interessante Dinge verwenden.
   const div = document.querySelector("#Objekt");
-  div.innerHTML = "es wurde geklickt";
+  div.innerHTML = clickedThing.object.name + " wurde geklickt!";
   console.log(clickedThing.object.name);
-    clickedThing.object.material.color("red");
+    // clickedThing.object.material.color("red");
 }
 let bouncingSave = [];
 // bewegt Objekt nach oben und unten
@@ -156,11 +156,16 @@ function bounceObject(clickedThing) {
   const currentPosition = clickedThing.object.position;
   // speichert alte y Koordinate
   const oldY = currentPosition.y;
+   const highlight = new THREE.MeshBasicMaterial({ color: 0xff00ff });
+    const oldMaterial = clickedThing.object.material;
+    clickedThing.object.material = highlight;
   // bewegt es nach unten
   clickedThing.object.position.setY(oldY - 0.02);
+    
   // setzt das Objekt nach 200ms wieder an die alte y Koordinate zurück
   setTimeout(() => {
     clickedThing.object.position.setY(oldY);
+      clickedThing.object.material = oldMaterialx;
     bouncingSave = bouncingSave.filter(
       (element) => element !== clickedThing.object.name
     );
@@ -182,4 +187,23 @@ function loadModel(scene, filepath) {
         console.error( error );
     } );
 }
+
+let x = 7;
+const button = document.querySelector("#Button");
+button.addEventListener("click", function () {
+    const input = document.querySelector("input");
+    const amount = input.value;
+    let count = 0;
+    while (count < amount) {
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshPhysicalMaterial({ color: 0xf2f2f2 });
+        const cube = new THREE.Mesh(geometry, material);
+        // setzt den Würfel an x = 2, y = 0, z = 0
+        cube.position.set(x, 0, 0);
+        // fügt den Würfel der Szene hinzu
+        scene.add(cube);
+        x = x + 2;
+        count++;
+    }
+})
 
